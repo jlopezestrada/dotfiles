@@ -56,10 +56,20 @@ CoC.nvim requires Node.js. Install it if not already installed:
 sudo apt install nodejs npm
 ```
 
+## Build CoC.nvim (required after plugin install)
+
+After installing `coc.nvim` via a plugin manager (`vim-plug`, `packer`, etc.), you must compile it:
+
+```bash
+cd ~/.config/nvim/plugged/coc.nvim
+npm install
+```
+Use `npm install` if there is no `package-lock.json` in the folder.
+
 Then in Neovim, install language support extensions:
 
 ```vim
-:CocInstall coc-json coc-tsserver coc-python coc-html coc-css
+:CocInstall coc-json coc-tsserver coc-python coc-html coc-css coc-clangd coc-go coc-rust-analyzer
 ```
 
 > Install only the extensions you need.
