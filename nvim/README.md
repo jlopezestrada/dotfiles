@@ -46,6 +46,16 @@ Run `:Lazy` and the plugin UI will open and install all of the defined in init.l
 
 Run `:Mason` and the plugin UI will open to install LSP servers / linters / formatters / debuggers.
 
+---
+
+## Nerd Fonts (for Icons)
+
+Some plugins (e.g. `vim-devicons`) require a Nerd Font. Install one:
+
+1. Visit [https://www.nerdfonts.com/](https://www.nerdfonts.com/)
+2. Download a font (e.g. FiraCode Nerd Font).
+3. Set it as your terminal’s font.
+
 # Daily Usage
 
 ## Leader key
@@ -108,4 +118,5 @@ Signs in the gutter show changes (via **gitsigns**).
 ```vim
 :Gitsigns preview_hunk
 :Gitsigns stage_hunk
+
 :Gitsigns reset_hunk
