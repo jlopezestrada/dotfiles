@@ -309,3 +309,18 @@ neoconf.json
 # Devbox
 .devbox
 
+# General
+.ssh/
+.gnupg/
+.aws/
+.azure/
+.config/gh/
+.config/gcloud/
+.kube/
+.docker/config.json
+.npmrc
+.netrc
+.pypirc
+.cache/
+bash_history
+zsh_history
