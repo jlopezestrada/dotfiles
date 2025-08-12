@@ -2,95 +2,110 @@
 
 This section explains how to install and use my Neovim configuration on a Linux system.
 
+## Requirements
+
+- `Neovim 0.11` or newer
+- Build tools (for compiling telescope-fzf-native):
+    - Debian/Ubuntu: `sudo apt install -y build-essential`
+    - Fedora: `sudo dnf groupinstall -y "Development Tools"`
+    - Arch: `sudo pacman -S --needed base-devel`
+- Python (for language specific plugins)
+    - `sudo apt install python3`
+    - `sudo apt install python3-venv` 
+    - `sudo apt install python3-pip`
+- NPM (for language servers)
+    - `sudo apt install npm`
+- Unzip (neccesary to uncompress some plugins)
+    - `sudo apt install unzip`
+
 ## Configuration Path
 
-Neovim uses `init.vim` as its main configuration file, located at:
+Neovim uses `init.lua` as its main configuration file, located at:
 
 ```
-~/.config/nvim/init.vim
+~/.config/nvim/init.lua
 ```
 
 If this directory or file doesn't exist, create them:
 
 ```bash
 mkdir -p ~/.config/nvim
-nano ~/.config/nvim/init.vim
+nvim ~/.config/nvim/init.vim
 ```
 
 Paste the Neovim configuration into that file and save it.
 
----
-
-## Install Plugin Manager: vim-plug
-
-This config uses [vim-plug](https://github.com/junegunn/vim-plug) for plugin management. Install it for Neovim with:
-
-```bash
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-
----
-
-## Install Plugins
+## Installation
 
 Open Neovim:
-
 ```bash
 nvim
 ```
 
-Then, install all plugins with:
+Run `:Lazy` and the plugin UI will open and install all of the defined in init.lua file.
 
-```
-:PlugInstall
-```
+Run `:Mason` and the plugin UI will open to install LSP servers / linters / formatters / debuggers.
+
+# Daily Usage
+
+## Leader key
+`<leader>` is **Space**.
 
 ---
 
-## CoC.nvim Setup (Auto-completion / LSP)
+## Fuzzy finding (Telescope)
 
-CoC.nvim requires Node.js. Install it if not already installed:
+| Action              | Keys        |
+|---------------------|-------------|
+| Find files          | `<leader>ff`|
+| Live grep in project| `<leader>fg`|
+| List open buffers   | `<leader>fb`|
+| Search help         | `<leader>fh`|
 
-```bash
-sudo apt install nodejs npm
-```
+---
 
-## Build CoC.nvim (required after plugin install)
+## LSP navigation & actions
 
-After installing `coc.nvim` via a plugin manager (`vim-plug`, `packer`, etc.), you must compile it:
+| Action                   | Keys                          |
+|--------------------------|-------------------------------|
+| Go to definition         | `gd`                          |
+| References               | `gr`                          |
+| Implementation           | `gI`                          |
+| Hover docs               | `K`                           |
+| Rename symbol            | `<leader>rn`                  |
+| Code actions             | `<leader>ca`                  |
+| Next diagnostic          | `]d`                          |
+| Previous diagnostic      | `[d`                          |
+| Show diagnostic at cursor| `:lua vim.diagnostic.open_float()` |
 
-```bash
-cd ~/.config/nvim/plugged/coc.nvim
-npm install
-```
-Use `npm install` if there is no `package-lock.json` in the folder.
+> The **W/E** markers in the sign column are LSP diagnostics (Warnings/Errors).  
+> Use the keys above to inspect them.
 
-Then in Neovim, install language support extensions:
+---
+
+## Autocompletion & snippets (nvim-cmp + LuaSnip)
+
+- Trigger completion: **Ctrl-Space** (in Insert mode)  
+- Accept: **Enter**  
+- Next/Prev item: **Tab / Shift-Tab**  
+- Snippet jump/expand: **Tab**  
+
+---
+
+## Formatting & linting
+
+- **Format on save** via Conform (when a formatter is available).  
+- **Linting** via nvim-lint runs after save or when leaving Insert mode; results show as diagnostics.
+
+---
+
+## Git
+
+Signs in the gutter show changes (via **gitsigns**).
+
+**Useful commands:**
 
 ```vim
-:CocInstall coc-json coc-tsserver coc-python coc-html coc-css coc-clangd coc-go coc-rust-analyzer
-```
-
-> Install only the extensions you need.
-
----
-
-## Nerd Fonts (for Icons)
-
-Some plugins (e.g. `vim-devicons`) require a Nerd Font. Install one:
-
-1. Visit [https://www.nerdfonts.com/](https://www.nerdfonts.com/)
-2. Download a font (e.g. FiraCode Nerd Font).
-3. Set it as your terminal’s font.
-
----
-
-## Keybindings & Features
-
-| Keybinding     | Action               |
-|----------------|----------------------|
-| `Ctrl + n`     | Open NERDTree        |
-| `Ctrl + t`     | Toggle NERDTree      |
-| `Ctrl + f`     | Find file in NERDTree|
-| `F8`           | Toggle Tagbar        |
+:Gitsigns preview_hunk
+:Gitsigns stage_hunk
+:Gitsigns reset_hunk
