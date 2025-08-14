@@ -55,7 +55,7 @@ Before installing, make sure you have:
    nano ~/.config/starship.toml
    ```
 
-2. **Paste the [Starship Config](./starship/starship.toml) into ** `~/.config/starship.toml`:
+2. **Paste the [Starship Config](./starship.toml) into** `~/.config/starship.toml`:
 
 3. **Reload your shell** for changes to take effect:  
    ```bash
@@ -80,7 +80,7 @@ Before installing, make sure you have:
    notepad $HOME\.config\starship.toml
    ```
 
-3. **Paste the [Starship Config](./starship/starship.toml)** from the Linux/macOS section above into `starship.toml`.
+3. **Paste the [Starship Config](./starship.toml)** from the Linux/macOS section above into `starship.toml`.
 
 4. **Restart PowerShell** to see your new prompt.
 
