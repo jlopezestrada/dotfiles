@@ -30,6 +30,14 @@ Before installing, make sure you have:
      ```powershell
      Invoke-Expression (&starship init powershell)
      ```
+     >If this fails or the file don't exist, run the following command to create the profile:
+     >```powershell
+     >New-Item -ItemType File -Path $PROFILE -Force
+     >```
+     >If the profile execution fails, run the following command:
+     >```powershell
+     >Set-ExecutionPolicy RemoteSigned
+     >```
 
 3. **A Nerd Font** installed (for proper icon rendering)  
    - Recommended: [JetBrains Mono Nerd Font](https://www.nerdfonts.com/font-downloads)
