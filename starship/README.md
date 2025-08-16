@@ -34,7 +34,7 @@ Before installing, make sure you have:
      >```powershell
      >New-Item -ItemType File -Path $PROFILE -Force
      >```
-     >If the profile execution fails, run the following command:
+     >If the profile execution fails, run the following command as administrator:
      >```powershell
      >Set-ExecutionPolicy RemoteSigned
      >```
