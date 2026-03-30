@@ -214,3 +214,17 @@ vim.keymap.set("n", "<leader>ff", tb.find_files, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>fg", tb.live_grep, { desc = "Live Grep" })
 vim.keymap.set("n", "<leader>fb", tb.buffers, { desc = "Buffers" })
 vim.keymap.set("n", "<leader>fh", tb.help_tags, { desc = "Help Tags" })
+
+-- 4) Fix Windows Paste (^M / Carriage Returns)
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = vim.api.nvim_create_augroup("CleanPaste", { clear = true }),
+	callback = function()
+		-- Only run if we are pasting (operator 'p' or 'P')
+		if vim.v.event.operator == 'p' or vim.v.event.operator == 'P' then
+			-- Use pcall to ignore errors if no ^M are found
+			pcall(function()
+				vim.cmd([[silent! %s/\r//g]])
+			end)
+		end
+	end,
+})
